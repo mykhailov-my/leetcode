@@ -8,19 +8,18 @@ class Solution:
                 else:
                     return None
             else:
-                first_half = recursive_search(nums[:round(len(nums) / 2)], target, start_idx = start_idx)
-                second_half = recursive_search(nums[round(len(nums) / 2):], target, start_idx = start_idx + round(len(nums) / 2))
-                if first_half is not None:
-                    return first_half
+                first_half = nums[:round(len(nums) / 2)]
+                if first_half[-1] >= target:
+                    return recursive_search(first_half, target, start_idx = start_idx)
                 else:
-                    return second_half
+                    second_half = nums[round(len(nums) / 2):]
+                    return recursive_search(second_half, target, start_idx = start_idx + round(len(nums) / 2))
         result = recursive_search(nums, target)
         return result if result is not None else -1
 
 if __name__ == '__main__':
     nums = [-1,0,3,5,9,12]
-    nums = [2,5]
-    target = 2
+    target = 9
     sol = Solution()
     res = sol.search(nums, target)
     print(f'Result --> {res}')
