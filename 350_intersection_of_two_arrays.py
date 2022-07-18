@@ -26,9 +26,28 @@ class Solution:
         return result
 
 
+class Solution2:
+    def intersect(self, nums1: list[int], nums2: list[int]) -> list[int]:
+        def count_values(l):
+            counter = {}
+            for val in l:
+                counter[val] = counter.get(val, 0) + 1
+            return counter
+        
+        counter_1 = count_values(nums1)
+        counter_2 = count_values(nums2)
+        result = []
+        smaller_counter = counter_1 if len(nums1) < len(nums2) else counter_2
+        bigger_counter = counter_1 if len(nums1) > len(nums2) else counter_2
+        for key in smaller_counter:
+            if key in bigger_counter:
+                for i in range(min(counter_1[key], counter_2[key])):
+                    result.append(key)
+        return result
+
 if __name__ == '__main__':
     n = [4,9,5]
     m = [9,4,9,8,4]
-    sol = Solution()
+    sol = Solution2()
     res = sol.intersect(n, m)
     print(f'Result --> {res}')  
