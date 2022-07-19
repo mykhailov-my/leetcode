@@ -1,18 +1,19 @@
 """
-Status -> (Solved by myself, Solved with hint, Solved on review, Implemented with solution)
+Status -> Solved by myself
 
-Time complexity ->
-Space complexity ->
+Time complexity -> O(N)
+Space complexity -> O(n)
 
 Solution
-1.
-2.
-3.
+1. Create stack
+2. If it's opening parenthesis add it to stack
+3. else pop last item from stack, if stack empty or parenthesis missmatch return false
+4. return if stack is empty
 """
 from collections import deque
 
 class Solution:
-    parenthes_mapper = {
+    parenthesis_mapper = {
         "{": "}",
         "(": ")",
         "[": "]",
@@ -20,15 +21,15 @@ class Solution:
 
     def isValid(self, s: str) -> bool:
         stack = deque()
-        for parenthes in s:
-            if parenthes in {"{", "(", "["}:
-                stack.append(parenthes)
+        for parenthesis in s:
+            if parenthesis in {"{", "(", "["}:
+                stack.append(parenthesis)
             else:
                 try:
                     previous_parenthes = stack.pop()
                 except IndexError:
                     return False
-                if self.parenthes_mapper[previous_parenthes] != parenthes:
+                if self.parenthesis_mapper[previous_parenthes] != parenthesis:
                     return False
         return len(stack) == 0
 

@@ -28,12 +28,20 @@ class Solution:
         return str_to_stack(s) == str_to_stack(t)
 
 
+class Solution2:
+
+    def backspaceCompare(self, s: str, t: str) -> bool:
+        # two pointers for each string
+        pass
+
 
 if __name__ == '__main__':
     n = "ab#c"
     m = "ad#c"
     n = "ab##"
     m = "c#d#"
+    n = 'abc#c'
+    m = 'ab#bc'
 
     sol = Solution()
     res = sol.backspaceCompare(n, m)
