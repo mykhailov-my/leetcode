@@ -1,7 +1,7 @@
 """
 Status -> Solved by myself
 
-Time complexity -> O(N)
+Time complexity -> O(log N)
 Space complexity -> O(log N)
 
 Solution
