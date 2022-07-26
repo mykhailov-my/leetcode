@@ -1,23 +1,42 @@
 """
 Status -> Implemented with solution
 
-Time complexity -> O(N*M)
-Space complexity -> O(M)
-
-Solution
-1. Store first row and inverted frist row
-2. Iterate from second row
-3. if at leat one row != first row and inverted row -> return False
-4. return True
 """
 
 class Solution2:
+    '''
+    Time complexity -> O(N*M)
+    Space complexity -> O(M)
+
+    Solution
+    1. Store first row and inverted frist row
+    2. Iterate from second row
+    3. if at leat one row != first row and inverted row -> return False
+    4. return True
+    '''
     def removeOnes(self, grid: list[list[int]]) -> bool:
         r = grid[0]
         r_inverted = [1-v for v in grid[0]]
         for row in grid[1:]:
             if row != r and row != r_inverted:
                 return False
+        return True
+
+
+class Solution3:
+    '''
+    Optimized solution 2
+
+    Time complexity -> O(N*M)
+    Space complexity -> O(1)
+    '''
+    def removeOnes(self, grid: list[list[int]]) -> bool:
+        first = grid[0]
+        for row in grid[1:]:
+            if row != first:
+                for f, r in zip(first, row):
+                    if 1-f != r:
+                        return False
         return True
 
 
