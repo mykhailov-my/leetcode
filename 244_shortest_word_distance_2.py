@@ -1,13 +1,18 @@
 """
-Status -> (Solved by myself, Solved with hint, Solved on review, Implemented with solution)
+Status -> Solved by myself
 
-Time complexity ->
-Space complexity ->
+__init__
+Time complexity -> O(N)
+Space complexity -> O(N)
+
+closest_nums
+Time complexity -> O(N*M), where N - times first str occurs, M second str occurs
+Space complexity -> O(1)
 
 Solution
-1.
-2.
-3.
+1. create dict word -> list of indidces where it occurs
+2. iterate by two lists of indices
+3. return smallest absolute differance 
 """
 
 class WordDistance:
