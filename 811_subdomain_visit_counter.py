@@ -1,5 +1,5 @@
 """
-Status -> (Solved by myself, Solved with hint, Solved on review, Implemented with solution)
+Status -> Solved by myself
 
 Time complexity -> O(N)
 Space complexity -> O(N)
