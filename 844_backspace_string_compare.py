@@ -11,7 +11,7 @@ Solution
 4. compare stacks
 """
 from collections import deque
-
+from itertools import zip_longest
 
 class Solution:
     def backspaceCompare(self, s: str, t: str) -> bool:
@@ -29,10 +29,24 @@ class Solution:
 
 
 class Solution2:
+    '''
+    Implemented from solution
+
+    Time complexity -> O(N + M)
+    Space complexity -> O(1)
+    '''
 
     def backspaceCompare(self, s: str, t: str) -> bool:
-        # two pointers for each string
-        pass
+        def symbol_iterator(s: str):
+            skip = 0
+            for char in reversed(s):
+                if char == '#':
+                    skip += 1
+                elif skip > 0:
+                    skip -= 1
+                else:
+                    yield char
+        return all(char_s == char_t for char_s, char_t in zip_longest(symbol_iterator(s), symbol_iterator(t)))
 
 
 if __name__ == '__main__':
@@ -40,9 +54,12 @@ if __name__ == '__main__':
     m = "ad#c"
     n = "ab##"
     m = "c#d#"
-    n = 'abc#c'
-    m = 'ab#bc'
+    n = 'ddd###abc'
+    m = 'abc#c'
 
-    sol = Solution()
+    n = 'ab#b'
+    m = 'ab'
+
+    sol = Solution2()
     res = sol.backspaceCompare(n, m)
     print(f'Result --> {res}')  
