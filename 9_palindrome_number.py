@@ -1,13 +1,10 @@
 """
-Status -> (Solved by myself, Solved with hint, Solved on review, Implemented with solution)
+Status -> Solved by myself
 
-Time complexity ->
-Space complexity ->
+Time complexity -> O(logN)
+Space complexity -> O(logN)
 
-Solution
-1.
-2.
-3.
+
 """
 
 class Solution:
@@ -23,7 +20,6 @@ class Solution:
             left += 1
             right -= 1
         return True
-
 
 
 if __name__ == '__main__':
