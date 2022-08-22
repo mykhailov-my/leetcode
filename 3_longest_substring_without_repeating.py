@@ -71,11 +71,38 @@ class BestSolution:
             right += 1
         return res
 
+
+class Solution4:
+    '''
+    Same as 1 solution but array instead of dict
+    Runtime stays the same
+    '''
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        max_len = 0
+        curr_len = 0
+        # unique_chars = {}
+        char_map = [None] * 128
+        i = 0
+        while i < len(s):
+            if char_map[ord(s[i])] is not None:
+                max_len = max(curr_len, max_len)
+                i = char_map[ord(s[i])] + 1
+                char_map = [None] * 128
+                char_map[ord(s[i])] = i
+                curr_len = 1
+            else:
+                char_map[ord(s[i])] = i
+                curr_len += 1
+            i += 1
+        return max(curr_len, max_len)
+
+
 if __name__ == '__main__':
-    n = "pwwkew"
-    n = ' '
-    n = 'add'
-    n = "abcabcbb"  # 3
-    sol = Solution2()
+    n = "pwwkew" # 3
+    # n = ' '
+    # n = 'add'
+    # n = "abcabcbb"  # 3
+    # n = 'dvdf' # 3
+    sol = Solution4()
     res = sol.lengthOfLongestSubstring(n)
     print(f'Result --> {res}')  
