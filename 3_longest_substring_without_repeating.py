@@ -97,12 +97,35 @@ class Solution4:
         return max(curr_len, max_len)
 
 
+class Solution5:
+    '''
+    A bit optimized solution to use dict instead of list. 
+    There is no significant run time change
+    '''
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        char_map = {}
+        left = right = 0
+        res = 0
+        while right < len(s):
+            # r = s[right]
+
+            index = char_map.get(s[right])
+            if index != None and index >= left and index < right:
+                left = index + 1
+
+            res = max(res, right - left + 1)
+
+            char_map[s[right]] = right
+            right += 1
+        return res
+
+
 if __name__ == '__main__':
     n = "pwwkew" # 3
-    # n = ' '
-    # n = 'add'
-    # n = "abcabcbb"  # 3
-    # n = 'dvdf' # 3
-    sol = Solution4()
+    n = ' '
+    n = 'add'
+    n = "abcabcbb"  # 3
+    n = 'dvdf' # 3
+    sol = Solution5()
     res = sol.lengthOfLongestSubstring(n)
     print(f'Result --> {res}')  
