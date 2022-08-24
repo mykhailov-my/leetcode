@@ -1,16 +1,20 @@
-"""
-Status -> (Solved by myself, Solved with hint, Solved on review, Implemented with solution)
-
-Time complexity ->
-Space complexity ->
-
-Solution
-1.
-2.
-3.
-"""
 
 class Solution:
+    """
+    Status -> (Solved by myself, Solved with hint, Solved on review, Implemented with solution)
+
+    Tags ->
+
+    Time complexity ->
+    Space complexity ->
+
+    Solution
+    1.
+    2.
+    3.
+
+    Notes 
+    """
     def func(self, n):
         pass
 
