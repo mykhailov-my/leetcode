@@ -1,16 +1,25 @@
-"""
-Status -> Solved with hint
 
-Time complexity ->
-Space complexity ->
-
-Solution
-1.
-2.
-3.
-"""
 
 class Solution:
+    """
+    Status -> Solved with hint
+
+    Time complexity -> O(N)
+    Space complexity -> O(1)
+
+    Solution
+    1. init left, right and zero counter
+    2. init window
+    3. iterate by nums
+        if new symbol is 0 ->
+            if we at limit or more (zero_counter >= k) -> move window, update counter
+            else -> expand window
+        else ->
+            if we exceeded limit means we have more zeros then allowed and we can't add another 1
+            -> move window
+            else -> expand window
+    4. return window size
+    """
     def longestOnes(self, nums: list[int], k: int) -> int:
         left = 0
         right = k
