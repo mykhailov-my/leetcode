@@ -16,7 +16,7 @@ class Solution:
     """
 
     def maxResult(self, nums: list[int], k: int) -> int:
-        result = nums[0]
+        result = 0
         curr = 1
         while curr < len(nums):
             max_num_ind = curr
