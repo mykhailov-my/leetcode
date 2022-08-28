@@ -55,7 +55,24 @@ class Solution:
         # if symbol is 1 and we exceeded limit -> move window
         pass
 
+class BetterSolution:
+    def longestOnes(self, nums: list[int], k: int) -> int:
+        left = 0
+        right = 0
+        zero_counter = 0
+        ans = 0
 
+        while right < len(nums):
+            if nums[right] == 0:
+                zero_counter += 1
+            while zero_counter > k:
+                if nums[left] == 0:
+                    zero_counter -= 1
+                left += 1
+            ans = max(ans, right - left + 1)
+            right += 1
+
+        return ans
 
 if __name__ == '__main__':
     n = [1,1,1,0,0,0,1,1,1,1,0] #6
