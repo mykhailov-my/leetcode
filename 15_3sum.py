@@ -30,9 +30,77 @@ class Solution:
         return res
 
 
+class Solution2:
+    '''
+    Brute force, too slow
+    '''
+    def threeSum(self, nums: list[int]) -> list[list[int]]:
+        nums_map = {}
+        for i in range(len(nums)):
+            l = nums_map.get(nums[i], [])
+            l.append(i)
+            nums_map[nums[i]] = l
+        result = set()
+        for i in range(len(nums)):
+            for j in range(i + 1, len(nums)):
+                for k in range(j + 1, len(nums)):
+                    if nums[i] + nums[j] + nums[k] == 0:
+                        print(i,j,k)
+                        result.add(tuple(sorted((nums[i],nums[j],nums[k]))))
+        return result
+
+
+class Solution3:
+    '''
+    Time complexity -> O(N^2)
+    Space complexity -> O(N)
+
+    Acceptable solution but too slow
+    '''
+    def threeSum(self, nums: list[int]) -> list[list[int]]:
+        nums_map = {}
+        for i in range(len(nums)):
+            l = nums_map.get(nums[i], [])
+            l.append(i)
+            nums_map[nums[i]] = l
+        result = set()
+        for i in range(len(nums)):
+            for j in range(i + 1, len(nums)):
+                if -nums[i] -nums[j] in nums_map:
+                    indices = nums_map[-nums[i] -nums[j]]
+                    if (len(indices) > 2 or (i not in indices and j not in indices)):
+                        result.add(tuple(sorted((nums[i], nums[j], nums[indices[0]]))))
+
+        return result
+
+
+class Solution4:
+    '''
+    Time complexity -> O(N^2)
+    Space complexity -> O(N)
+
+    Acceptable solution but too slow, slight optimization of sol3
+    '''
+    def threeSum(self, nums: list[int]) -> list[list[int]]:
+        nums_map = {}
+        for i in range(len(nums)):
+            l = nums_map.get(nums[i], set())
+            l.add(i)
+            nums_map[nums[i]] = l
+        result = set()
+        for i in range(len(nums)):
+            for j in range(i + 1, len(nums)):
+                if -nums[i] -nums[j] in nums_map:
+                    indices = nums_map[-nums[i] -nums[j]]
+                    if (len(indices) > 2 or (i not in indices and j not in indices)):
+                        print(f'{i} {j} ')
+                        result.add(tuple(sorted((nums[i], nums[j], -nums[i] -nums[j]))))
+
+        return result
 
 if __name__ == '__main__':
-    n = ...
-    sol = Solution()
-    res = sol.func(n)
+    n = [-1,0,1,2,-1,-4]  # [[-1,-1,2],[-1,0,1]]
+    n = [-1,0,1,0]  # [[-1,0,1]]
+    sol = Solution4()
+    res = sol.threeSum(n)
     print(f'Result --> {res}')  
