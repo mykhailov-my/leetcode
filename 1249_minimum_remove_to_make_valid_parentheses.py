@@ -29,17 +29,61 @@ class Solution:
                         stack.append(i)
                 except IndexError:
                     stack.append(i)
+        indexes_to_remove = set(stack)
+        del stack
+        string_builder = []
+        for i, c in enumerate(s):
+            if i not in indexes_to_remove:
+                string_builder.append(c)
+        return "".join(string_builder)
 
-        while len(stack) > 0:
-            index_to_remove = stack.pop()
-            s = s[:index_to_remove] + s[index_to_remove+1:]
-        print(stack)
-        return s
 
+class Solution2:
+    '''
+    Without stack but no win in benchmark
+    '''
+    def minRemoveToMakeValid(self, s: str) -> str:
+        close_brackets = set()
+        open_brackets = set()
+        for i in range(len(s)):
+            if s[i] == '(':
+                open_brackets.add(i)
+            elif s[i] == ')':
+                if open_brackets:
+                    open_brackets.pop()
+                else:
+                    close_brackets.add(i)
+        string_builder = []
+        for i in range(len(s)):
+            if i in open_brackets or i in close_brackets:
+                continue
+            else:
+                string_builder.append(s[i])
+        return ''.join(string_builder)
+
+
+class BestSolution:
+    def minRemoveToMakeValid(self, s: str) -> str:
+        s = list(s)
+        stack = []
+        for i, char in enumerate(s):
+            if char == '(':
+                stack.append(i)
+            elif char == ')':
+                if stack:
+                    stack.pop()
+                else:
+                    s[i] = ''
+        while stack:
+            s[stack.pop()] = ''
+        return ''.join(s)
 
 
 if __name__ == '__main__':
     n = "lee(t(c)o)de)"
-    sol = Solution()
+    # n = '(((a)'
+    n = "())()((("  # "()()"
+
+    sol = Solution2()
     res = sol.minRemoveToMakeValid(n)
     print(f'Result --> {res}')  
