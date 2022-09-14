@@ -8,8 +8,8 @@ class Solution:
 
     Tags -> Binary Search
 
-    Time complexity -> O(2LogN) -> O(log N)
-    Space complexity -> O(1)
+    Time complexity -> O(2LogN) -> O(log ROW)
+    Space complexity -> O(ROW)
 
     Solution
     1. if target out of min and max of matrix -> return false (min is matrix [0][0], max is matrix[-1][-1]) -> element not present in matrix
