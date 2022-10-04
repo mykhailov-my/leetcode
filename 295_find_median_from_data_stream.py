@@ -9,7 +9,7 @@ Solution
 2. if len odd return avg of two nums in middle
 3. else return num from middle
 """
-from bisect import bisect_left
+from bisect import bisect_left, insort
 
 
 class MedianFinder:
@@ -28,12 +28,40 @@ class MedianFinder:
         return float(self.nums[len(self.nums) // 2])
 
 
+class MedianFinder2:
+    """
+    Status -> Solved by myself
 
+    Tags ->
+
+    Time complexity ->
+    Space complexity ->
+
+    Solution
+    1.
+    2.
+    3.
+
+    Notes 
+    """
+    def __init__(self):
+        self.values = []
+
+    def addNum(self, num: int) -> None:
+        insort(self.values, num)
+
+    def findMedian(self) -> float:
+        mid = len(self.values) // 2
+        if len(self.values) % 2 == 0:
+            # breakpoint()
+            return (self.values[mid] + self.values[mid - 1]) / 2
+        else:
+            return self.values[mid]
 
 
 if __name__ == '__main__':
 
-    finder = MedianFinder()
+    finder = MedianFinder2()
     finder.addNum(1)
     finder.addNum(2)
     _ = finder.findMedian()
