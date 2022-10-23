@@ -13,8 +13,11 @@ class Solution:
 
     Solution
     1. Validation of input (if start pos is 1 or if it's just one cell)
-    2. At this point use bfs, but seen is not a set but a dict (row, col) -> path
-    3.
+    2. At this point use bfs, but seen is not a set but a dict (row, col) -> path: int
+        3. while doing typical BFS stuff in part where we rtaverse neighbour cells check if one of them is last.
+        If it's last -> return path len of current cell and add 1 (seen[(row, col)] + 1)
+        4. Else add cell to query and to seen dict with incremented path
+    5. at this point, after traversing whole query, reach to destination is impossible so return -1
 
     Notes 
     """
@@ -29,9 +32,7 @@ class Solution:
         seen = {(0, 0): 1}
 
         directions = ((0, 1), (1, 0), (0, -1), (-1, 0), (-1, 1), (1, -1), (1, 1), (-1, -1))
-        # min_path = float('inf')
         while query:
-            # print(query)
             row, col = query.popleft()
             for d in directions:
                 adjacent_row, adjacent_col = row + d[0], col + d[1]
@@ -39,13 +40,11 @@ class Solution:
                     if grid[adjacent_row][adjacent_col] == 0:
                         if adjacent_row == len(grid) -1 and adjacent_col == len(grid[row]) -1:
                             return seen[(row, col)] + 1
-                            # return min(seen[(row, col)] + 1, min_path)
                         else:
                             seen[(adjacent_row, adjacent_col)] = seen[(row, col)] + 1
                             query.append((adjacent_row, adjacent_col))
 
         return -1
-        # return min_path if min_path != float('inf') else -1
 
 
 
